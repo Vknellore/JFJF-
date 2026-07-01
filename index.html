@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JFYF® — Just Face Your Fears</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+        
+        :root {
+            --black: #0a0a0a;
+            --offwhite: #f8f7f4;
+        }
+        
+        * { margin:0; padding:0; box-sizing:border-box; }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--black);
+            color: var(--offwhite);
+            line-height: 1.7;
+        }
+        
+        .serif { font-family: 'Playfair Display', serif; }
+        
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(248,247,244,0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .logo { font-size: 1.85rem; letter-spacing: -0.04em; text-decoration: none; color: inherit; }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.2rem;
+            font-size: 0.93rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        
+        nav a { color: inherit; text-decoration: none; transition: opacity 0.3s; }
+        nav a:hover { opacity: 0.6; }
+        
+        /* HERO */
+        .hero {
+            height: 100vh;
+            min-height: 820px;
+            background: linear-gradient(rgba(10,10,10,0.45), rgba(10,10,10,0.8)), 
+                        url('/home/workdir/attachments/hero-corridor.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 780px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(5rem, 13vw, 10rem);
+            line-height: 0.82;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline { font-size: 1.45rem; letter-spacing: 0.2em; margin: 1rem 0; }
+        .subtitle { opacity: 0.8; letter-spacing: 0.3em; font-size: 1.05rem; }
+        
+        .enter-btn {
+            margin-top: 3.5rem;
+            padding: 1.4rem 4.2rem;
+            border: 1px solid var(--offwhite);
+            display: inline-block;
+            color: var(--offwhite);
+            text-decoration: none;
+            letter-spacing: 0.2em;
+            font-size: 0.95rem;
+            transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+        }
+        
+        .enter-btn:hover {
+            background: var(--offwhite);
+            color: #0a0a0a;
+            transform: translateY(-4px);
+        }
+        
+        /* PILLARS */
+        section { padding: 120px 5% 100px; }
+        
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 0;
+        }
+        
+        .pillar {
+            min-height: 620px;
+            background-size: cover;
+            background-position: center;
+            padding: 4.5rem 3rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.7s cubic-bezier(0.23,1,0.32,1);
+        }
+        
+        .pillar:hover { transform: scale(1.018); }
+        
+        .pillar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 30%, rgba(10,10,10,0.92));
+        }
+        
+        .pillar-content { position: relative; z-index: 2; }
+        .pillar-label { font-size: 3.2rem; margin-bottom: 0.6rem; }
+        
+        /* ARCHIVE */
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: #111;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .card:hover {
+            border-color: #aaa;
+            transform: translateY(-12px);
+        }
+        
+        footer {
+            padding: 5rem 5% 3rem;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <header>
+        <a href="#" class="logo serif">JFYF®</a>
+        <nav>
+            <ul>
+                <li><a href="#philosophy">PHILOSOPHY</a></li>
+                <li><a href="#principles">KEY PRINCIPLES</a></li>
+                <li><a href="#identity">IDENTITY</a></li>
+                <li><a href="#restraint">LUXURY IN RESTRAINT</a></li>
+                <li><a href="#archive">ARCHIVE</a></li>
+                <li><a href="#collection">COLLECTION</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <h1 class="serif">JFYF®</h1>
+            <p class="tagline">JUST FACE YOUR FEARS</p>
+            <p class="subtitle">DISCIPLINE. TRANSFORMATION. LEGACY.</p>
+            <a href="#philosophy" class="enter-btn">ENTER</a>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section id="philosophy">
+        <h2 class="serif" style="font-size:3.2rem;text-align:center;margin-bottom:3rem;">PHILOSOPHY</h2>
+        <div style="max-width:720px;margin:0 auto;text-align:center;font-size:1.2rem;">
+            <p>Ideas that shape the mind and define direction.</p>
+        </div>
+    </section>
+
+    <!-- PILLARS -->
+    <div class="pillars">
+        <!-- KP -->
+        <div class="pillar" id="principles" style="background-image: url('/home/workdir/attachments/card-principles.jpg');">
+            <div class="pillar-content">
+                <div class="pillar-label serif">KP</div>
+                <p><strong>KEY PRINCIPLES</strong><br>The non-negotiables that guide every decision we make.</p>
+            </div>
+        </div>
+        
+        <!-- ID -->
+        <div class="pillar" id="identity" style="background-image: url('/home/workdir/attachments/card-identity.jpg');">
+            <div class="pillar-content">
+                <div class="pillar-label serif">ID</div>
+                <p><strong>IDENTITY</strong><br>Truths about self that time can’t erase.</p>
+            </div>
+        </div>
+        
+        <!-- LR -->
+        <div class="pillar" id="restraint" style="background-image: url('/home/workdir/attachments/card-restraint.jpg');">
+            <div class="pillar-content">
+                <div class="pillar-label serif">LR</div>
+                <p><strong>LUXURY IN RESTRAINT</strong><br>The art of saying less so the meaning speaks more.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARCHIVE -->
+    <section id="archive">
+        <h2 class="serif" style="font-size:2.8rem;margin-bottom:1rem;">THE ARCHIVE</h2>
+        <p style="max-width:520px;margin-bottom:3.5rem;">A chronological record of our thoughts, principles and identity.</p>
+        
+        <div class="archive-grid">
+            <div class="card">
+                <small>ID-005 • JUNE 2026</small>
+                <h3>TIME REVEALS WHO WE ARE.</h3>
+            </div>
+            <div class="card">
+                <small>PH-005 • JUNE 2026</small>
+                <h3>SOME CHAPTERS END BEFORE YOU REALISE THEY ARE OVER.</h3>
+            </div>
+            <div class="card">
+                <small>PH-004 • JUNE 2026</small>
+                <h3>SILENCE IS NOT ABSENCE.</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLECTION -->
+    <section id="collection" style="background:#111;">
+        <h2 class="serif" style="font-size:2.8rem;text-align:center;margin-bottom:4rem;">COLLECTION</h2>
+        <div style="text-align:center;max-width:600px;margin:0 auto;">
+            <p style="font-size:1.25rem;">Timeless pieces.<br>Minimal intervention.</p>
+            <p style="margin-top:2rem;opacity:0.7;">Coming soon.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 JFYF COLLECTIVE. ALL RIGHTS RESERVED.</p>
+        <p style="margin-top:2rem;opacity:0.6;">NOT FOR EVERYONE. BUILT FOR A FEW.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Header effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.style.padding = window.scrollY > 80 ? '1.2rem 5%' : '2rem 5%';
+        });
+    </script>
+</body>
+</html>
