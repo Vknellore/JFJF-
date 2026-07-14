@@ -50,6 +50,33 @@
         
         nav a { color: inherit; text-decoration: none; transition: opacity 0.3s; }
         nav a:hover { opacity: 0.6; }
+
+        /* Hamburger button — hidden on laptop/desktop, only shown on phone via media query below */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 24px;
+            position: relative;
+            z-index: 1002;
+            padding: 0;
+        }
+        .menu-toggle span {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--offwhite);
+            transition: all 0.35s ease;
+        }
+        .menu-toggle span:nth-child(1) { top: 0; }
+        .menu-toggle span:nth-child(2) { top: 11px; }
+        .menu-toggle span:nth-child(3) { top: 22px; }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
         
         /* HERO */
         .hero {
@@ -220,6 +247,100 @@
             height: 22px;
             fill: currentColor;
         }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+
+        /* =========================================================
+           PHONE-ONLY CHANGES BELOW.
+           Everything above this point is identical to the laptop
+           layout at widths above 768px — nothing there changes.
+           ========================================================= */
+        @media (max-width: 768px) {
+
+            header { padding: 1.3rem 6%; }
+
+            .logo { font-size: 1.5rem; }
+
+            /* Hide the inline nav list, show hamburger instead */
+            nav ul { display: none; }
+            .menu-toggle { display: block; }
+
+            /* Fullscreen slide-down mobile menu, same theme colors */
+            .mobile-menu {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: var(--black);
+                z-index: 999;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transform: translateY(-100%);
+                transition: transform 0.45s cubic-bezier(0.23,1,0.32,1);
+            }
+            .mobile-menu.open { transform: translateY(0); }
+            .mobile-menu a {
+                color: var(--offwhite);
+                text-decoration: none;
+                font-family: 'Playfair Display', serif;
+                font-size: 1.8rem;
+                letter-spacing: 0.02em;
+                opacity: 0.9;
+            }
+            .mobile-menu a:hover { opacity: 1; }
+
+            /* Hero: tighten spacing for small screens */
+            .hero { min-height: 100svh; padding: 0 5%; }
+            .hero h1 { font-size: clamp(3.2rem, 18vw, 5rem); }
+            .tagline { font-size: 1.05rem; letter-spacing: 0.14em; }
+            .subtitle { font-size: 0.85rem; letter-spacing: 0.2em; }
+            .enter-btn {
+                margin-top: 2.4rem;
+                padding: 1.1rem 2.6rem;
+                font-size: 0.85rem;
+            }
+
+            /* Pillars: shorter cards, tighter padding on phone */
+            .pillar { min-height: 380px; padding: 2.2rem 1.6rem; }
+            .pillar-label { font-size: 2.1rem; }
+            .pillar-content p { font-size: 0.95rem; }
+
+            /* Archive: stack header, single-column cards */
+            #archive { padding: 4rem 6% 3.5rem; }
+            .archive-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+                margin-bottom: 2.2rem;
+            }
+            .archive-header h2 { font-size: 1.9rem; }
+            .archive-grid { grid-template-columns: 1fr; gap: 1.1rem; }
+            .archive-card { padding: 1.5rem; }
+
+            #collection { padding: 3.5rem 6%; }
+            #collection h2 { font-size: 2.1rem; margin-bottom: 2.5rem; }
+
+            /* Footer: stack columns, center content */
+            footer { padding: 3rem 6% 2rem; }
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
@@ -236,7 +357,21 @@
                 <li><a href="#collection">COLLECTION</a></li>
             </ul>
         </nav>
+        <!-- Phone-only hamburger button (invisible on laptop) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
     </header>
+
+    <!-- Phone-only fullscreen menu (invisible on laptop) -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#philosophy">PHILOSOPHY</a>
+        <a href="#principles">KEY PRINCIPLES</a>
+        <a href="#identity">IDENTITY</a>
+        <a href="#restraint">LUXURY IN RESTRAINT</a>
+        <a href="#archive">ARCHIVE</a>
+        <a href="#collection">COLLECTION</a>
+    </div>
 
     <!-- HERO -->
     <section class="hero" id="top">
@@ -345,7 +480,7 @@
             </div>
         </div>
         
-        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;display:flex;justify-content:space-between;opacity:0.6;font-size:0.85rem;">
+        <div class="footer-bottom">
             <div>NOT FOR EVERYONE. BUILT FOR A FEW.</div>
             <div>JUST FACE YOUR FEARS</div>
         </div>
@@ -358,6 +493,9 @@
                 if (target) {
                     e.preventDefault();
                     target.scrollIntoView({ behavior: 'smooth' });
+                    // close mobile menu after tapping a link
+                    document.getElementById('mobileMenu').classList.remove('open');
+                    document.getElementById('menuToggle').classList.remove('open');
                 }
             });
         });
@@ -365,6 +503,14 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             header.style.padding = window.scrollY > 80 ? '1.2rem 5%' : '2rem 5%';
+        });
+
+        // Hamburger toggle (only visible/used on phone widths)
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
         });
     </script>
 </body>
